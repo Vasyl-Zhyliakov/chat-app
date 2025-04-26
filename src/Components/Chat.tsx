@@ -2,9 +2,10 @@ import { useState, useRef, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { messagesSlice } from "../features/messagesSlice";
 import "./chat.css";
+import { Users } from "../Types/message";
 
 export const Chat = () => {
-  const [value, setValue] = useState("");
+  const [inputValue, SetInputValue] = useState("");
 
   const dispatch = useAppDispatch();
   const { messages, isBotTyping } = useAppSelector((state) => state.messages);
@@ -19,15 +20,15 @@ export const Chat = () => {
   }, [messages]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    SetInputValue(event.target.value);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (value.trim() !== "") {
-      dispatch(messagesSlice.actions.addUserMessage(value));
-      setValue("");
+    if (inputValue.trim()) {
+      dispatch(messagesSlice.actions.addUserMessage(inputValue));
+      SetInputValue("");
 
       setTimeout(() => {
         dispatch(messagesSlice.actions.addBotMessage("Answer"));
@@ -57,7 +58,7 @@ export const Chat = () => {
       <div className="chat__scroll-wrapper">
         <div className="chat__messages">
           {messages.map((message) =>
-            message.sender === "user" ? (
+            message.sender === Users.user ? (
               <div
                 className="chat__message chat__message--user"
                 key={message.id}
@@ -89,7 +90,7 @@ export const Chat = () => {
             type="text"
             name="user-message"
             placeholder="Type your message..."
-            value={value}
+            value={inputValue}
             onChange={handleInputChange}
           />
           <button className="chat__button" type="submit" disabled={isBotTyping}>

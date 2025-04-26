@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Message } from "../Types/message";
+import { Message, Users } from "../Types/message";
 
 type initial = {
   messages: Message[];
@@ -19,7 +19,7 @@ export const messagesSlice = createSlice({
       state.messages.push({
         id: Date.now(),
         text: action.payload,
-        sender: "user",
+        sender: Users.user,
       });
 
       state.isBotTyping = true;
@@ -29,7 +29,7 @@ export const messagesSlice = createSlice({
       state.messages.push({
         id: Date.now(),
         text: action.payload,
-        sender: "chatBot",
+        sender: Users.chatBot,
       });
       state.isBotTyping = false;
     },

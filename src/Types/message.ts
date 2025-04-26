@@ -1,5 +1,10 @@
 export interface Message {
   id: number;
   text: string;
-  sender: "user" | "chatBot";
+  sender: Users;
+}
+
+export enum Users {
+  user = "user",
+  chatBot = "chatBot",
 }
