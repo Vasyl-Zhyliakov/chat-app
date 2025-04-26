@@ -46,20 +46,18 @@
 }
 
 .chat__messages {
-  height: 100%;
   padding: 0 24px;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   justify-content: end;
   gap: 10px;
 }
 
-.chat__messages::-webkit-scrollbar {
+.chat__scroll-wrapper::-webkit-scrollbar {
   width: 8px;
 }
 
-.chat__messages::-webkit-scrollbar-thumb {
+.chat__scroll-wrapper::-webkit-scrollbar-thumb {
   background-color: #785ec0;
   border-radius: 10px;
 }
