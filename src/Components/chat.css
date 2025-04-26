@@ -51,6 +51,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  justify-content: end;
   gap: 10px;
 }
 
