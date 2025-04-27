@@ -33,5 +33,9 @@ export const messagesSlice = createSlice({
       });
       state.isBotTyping = false;
     },
+
+    clearChat: (state) => {
+      state.messages = [];
+    },
   },
 });

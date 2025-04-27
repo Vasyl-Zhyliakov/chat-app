@@ -36,6 +36,10 @@ export const Chat = () => {
     }
   };
 
+  const handleClear = () => {
+    dispatch(messagesSlice.actions.clearChat());
+  };
+
   return (
     <div className="chat">
       <div className="chat__header">
@@ -49,6 +53,7 @@ export const Chat = () => {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
+          onClick={handleClear}
         >
           <path d="M18 6 6 18" />
           <path d="m6 6 12 12" />
