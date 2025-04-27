@@ -1,9 +1,9 @@
 .chat__close-icon {
-  width: 24px;
-  height: 24px;
+    width: 24px;
+    height: 24px;
 }
 
 .chat__close-icon:hover {
-  transform: scale(1.2);
-  transition: transform 0.3 ease;
+    transform: scale(1.2);
+    transition: transform 0.3 ease;
 }

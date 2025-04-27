@@ -1,41 +1,41 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Message, Users } from "../Types/message";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Message, Users } from '../Types/message';
 
 type initial = {
-  messages: Message[];
-  isBotTyping: boolean;
+    messages: Message[];
+    isBotTyping: boolean;
 };
 
 const initialState: initial = {
-  messages: [],
-  isBotTyping: false,
+    messages: [],
+    isBotTyping: false,
 };
 
 export const messagesSlice = createSlice({
-  name: "messages",
-  initialState,
-  reducers: {
-    addUserMessage: (state, action: PayloadAction<string>) => {
-      state.messages.push({
-        id: Date.now(),
-        text: action.payload,
-        sender: Users.user,
-      });
+    name: 'messages',
+    initialState,
+    reducers: {
+        addUserMessage: (state, action: PayloadAction<string>) => {
+            state.messages.push({
+                id: Date.now(),
+                text: action.payload,
+                sender: Users.user,
+            });
 
-      state.isBotTyping = true;
-    },
+            state.isBotTyping = true;
+        },
 
-    addBotMessage: (state, action: PayloadAction<string>) => {
-      state.messages.push({
-        id: Date.now(),
-        text: action.payload,
-        sender: Users.chatBot,
-      });
-      state.isBotTyping = false;
-    },
+        addBotMessage: (state, action: PayloadAction<string>) => {
+            state.messages.push({
+                id: Date.now(),
+                text: action.payload,
+                sender: Users.chatBot,
+            });
+            state.isBotTyping = false;
+        },
 
-    clearChat: (state) => {
-      state.messages = [];
+        clearChat: (state) => {
+            state.messages = [];
+        },
     },
-  },
 });
