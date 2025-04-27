@@ -18,15 +18,17 @@
 
 - A reference to an empty block at the bottom of the message container was created using useRef:
 
+  ```
   const chatRef = useRef<HTMLDivElement | null>(null);
 
   <div className="chat__messages">
     .....
     <div ref={chatRef}></div>
   </div>
+  ```
 
 - A smooth scroll to this element was implemented using the scrollIntoView method:
-
+  
   const scrollCallback = () => {
   chatRef.current?.scrollIntoView({ behavior: "smooth" });
   };
