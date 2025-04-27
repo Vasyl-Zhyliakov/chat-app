@@ -1,54 +1,44 @@
-# React + TypeScript + Vite
+# The project was created with Vite + React + TypeScript.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Follow these steps to run the project locally:
 
-Currently, two official plugins are available:
+- Clone the repository:
+  git clone https://github.com/Vasyl-Zhyliakov/chat-app.git
+- Navigate to the project directory:
+  cd the_todo_app
+- Install the dependencies (Make sure you have Node.js installed):
+  npm install
+- Start the development server:
+  npm run dev
+- You should see a local server link like:
+  http://localhost:5173
+  Open it in your browser to view the app.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Auto-scroll Implementation
 
-## Expanding the ESLint configuration
+- A reference to an empty block at the bottom of the message container was created using useRef:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  const chatRef = useRef<HTMLDivElement | null>(null);
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+  <div className="chat__messages">
+    .....
+    <div ref={chatRef}></div>
+  </div>
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- A smooth scroll to this element was implemented using the scrollIntoView method:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  const scrollCallback = () => {
+  chatRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- In useEffect, the scrollCallback function is triggered whenever a new message from the user or bot appears:
+
+  useEffect(() => {
+  scrollCallback();
+  }, [messages]);
+
+3. Why I chose Redux
+
+I chose Redux because it is more complex to implement, and i wanted to use it to enchance my state management skills.
+
+4. The answers to the mandatory questions are in the AI-Reflection.md file.

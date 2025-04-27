@@ -3,6 +3,8 @@ import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { messagesSlice } from "../features/messagesSlice";
 import "./chat.css";
 import { Users } from "../Types/message";
+import { CloseIcon } from "./Icons/CloseIcon";
+import { SendIcon } from "./Icons/SendIcon";
 
 export const Chat = () => {
   const [inputValue, SetInputValue] = useState("");
@@ -44,20 +46,7 @@ export const Chat = () => {
     <div className="chat">
       <div className="chat__header">
         <h1 className="chat__title">AI Agent</h1>
-        <svg
-          className="chat__close-icon"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          onClick={handleClear}
-        >
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
+        <CloseIcon handleClear={handleClear} />
       </div>
 
       <div className="chat__scroll-wrapper">
@@ -99,19 +88,7 @@ export const Chat = () => {
             onChange={handleInputChange}
           />
           <button className="chat__button" type="submit" disabled={isBotTyping}>
-            <svg
-              className="chat__send-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path>
-              <path d="m21.854 2.147-10.94 10.939"></path>
-            </svg>
+            <SendIcon />
           </button>
         </form>
       </div>
