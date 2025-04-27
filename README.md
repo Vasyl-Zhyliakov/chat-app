@@ -1,4 +1,5 @@
 # The project was created with Vite + React + TypeScript.
+- [Demo](https://Vasyl-Zhyliakov.github.io/chat-app/)
 
 1. Follow these steps to run the project locally:
 
